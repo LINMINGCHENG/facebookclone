@@ -1,11 +1,12 @@
 import React from 'react'
 import './Sidebar.css'
-import SidebarRow from './SidebarRow/SidebarRow'
+import SidebarRow from '../SidebarRow/SidebarRow';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 function Sidebar() {
     return (
         <div className="sidebar">
-            <SidebarRow src={user.photoURL} title={user.displayName}/>
-            <SidebarRow Icon={}/>
+           
+            <SidebarRow Icon={LocalHospitalIcon}/>
         </div>
     )
 }
