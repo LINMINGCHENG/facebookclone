@@ -1,20 +1,16 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
+import React from 'react'
+import './App.css'
+import Header from './components/Header/Header'
+import Sidebar from './components/Sidebar/Sidebar'
 function App() {
   return (
-    //BEM naming convention
-    <div className="app">
+      <div className="app">
          <Header/>
-
-          <div className="app_body">
+           <div className="app_body">
             <Sidebar/>
-            {/*Feed*/}
-            {/*Widgets*/}
           </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
