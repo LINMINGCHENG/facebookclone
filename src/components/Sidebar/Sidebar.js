@@ -1,5 +1,6 @@
 import React from 'react'
 import './Sidebar.css'
+<<<<<<< HEAD
 import SidebarRow from '../SidebarRow/SidebarRow'
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import EmojiFlagsIcon from '@material-ui/icons/EmojiFlags';
@@ -21,6 +22,15 @@ function Sidebar() {
             <SidebarRow Icon={VideoLibraryIcon} title="Videos" />
             <SidebarRow Icon={ExpandMoreIcon} title="MarketPlace"/>
             
+=======
+import SidebarRow from '../SidebarRow/SidebarRow';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+function Sidebar() {
+    return (
+        <div className="sidebar">
+           
+            <SidebarRow Icon={LocalHospitalIcon}/>
+>>>>>>> f0a7d5f6a843f0ccb628607296045d473260f405
         </div>
     )
 }
