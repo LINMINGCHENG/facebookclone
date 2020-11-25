@@ -1,21 +1,40 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react';
 import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
-import StoryReel from '../Storyreel/StoryReel'
+import StoryReel from '../StoryReel/StoryReel'
 import "./Feed.css"
+import db from './firebase'
+
+
+
 function Feed() {
+    const [posts,setPosts] = useState([]);
+    useEffect(() =>{
+           db.collection('posts').onSnapshot((snapshot) => {
+               setPosts(snapshot.docs.map((doc)=>({
+                   id:doc.id,
+                   data:doc.data()
+               })));
+    },[]);
+  
     return (
         <div className="feed">
             <StoryReel/>
             <MessageSender />
-            <Post profilePic="https://images.pexels.com/photos/1310474/pexels-photo-1310474.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                message="wow! this is work"
-                timestamp="This is a timestamp"
-                username="sannngha"
-                image = "https://images.pexels.com/photos/3954635/pexels-photo-3954635.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            />
-            <Post profilePic="https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                message="Two Jack O'lantern Lamps"
+            
+            {posts.map((post)=>
+            (
+             <Post
+              key={post.id}
+              profilePic={post.profilePic}
+              message={post.message}
+              timestamp={post.timestamp}
+              username={post.username}
+              image={post.image}    
+             />
+            ))}
+             <Post profilePic="https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                message="Two Jack  Lamps"
                 timestamp="This is a timestamp"
                 username="kJJJJ"
                 image = "https://images.pexels.com/photos/619418/pexels-photo-619418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
@@ -24,6 +43,7 @@ function Feed() {
                 timestamp="This is a timestamp"
                 username="jAZ_oK"
                 image = "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
+            
         </div>
     )
 }

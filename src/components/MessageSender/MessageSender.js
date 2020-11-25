@@ -4,8 +4,9 @@ import Avatar from '@material-ui/core/Avatar'
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-
+import {useStateValue} from '../../states/StateProvider';
 function MessageSender() {
+     const [{user},dispatch] = useStateValue();
     const [input, setInput] = useState("")
     const [imageUrl, setImageUrl] = useState("");
     
@@ -21,13 +22,13 @@ function MessageSender() {
     return (
       <div className="messageSender">
         <div className="messageSender_top">
-                <Avatar src={"https://lh6.ggpht.com/_FbG1uUDyZCA/SWmjEB8Eb3I/AAAAAAAACls/A3IL6cfvQUo/s800/chang-chen-90111003.jpg"}/>
+                <Avatar src={user.photoURL}/>
                 <form>
                     <input
                     value={input}
                     onChange={(e)=>setInput(e.target.value)}    
                     className="messageSender_input"
-                    placeholder={`what's your mind`}>
+                    placeholder={`what's your mind, ${user.displayName}?`}>
                     </input>
                     <input
                         value={imageUrl}    
