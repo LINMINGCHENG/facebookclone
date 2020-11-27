@@ -3,18 +3,18 @@ import MessageSender from '../MessageSender/MessageSender'
 import Post from '../Post/Post'
 import StoryReel from '../StoryReel/StoryReel'
 import "./Feed.css"
-import db from './firebase'
+import db from '../../firebase'
 
 
 
 function Feed() {
     const [posts,setPosts] = useState([]);
-    useEffect(() =>{
-           db.collection('posts').onSnapshot((snapshot) => {
-               setPosts(snapshot.docs.map((doc)=>({
+    
+     useEffect(() =>{
+           db.collection('posts').orderBy('timestamp').onSnapshot((snapshot) => setPosts(snapshot.docs.map((doc)=>({
                    id:doc.id,
                    data:doc.data()
-               })));
+           }))));
     },[]);
   
     return (
@@ -25,12 +25,12 @@ function Feed() {
             {posts.map((post)=>
             (
              <Post
-              key={post.id}
-              profilePic={post.profilePic}
-              message={post.message}
-              timestamp={post.timestamp}
-              username={post.username}
-              image={post.image}    
+              key={post.data.id}
+              profilePic={post.data.profilePic}
+              message={post.data.message}
+              timestamp={post.data.timestamp}
+              username={post.data.username}
+              image={post.data.image}    
              />
             ))}
              <Post profilePic="https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
